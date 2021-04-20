@@ -8,5 +8,6 @@ const findQuestionById = (questionId) => questionsModel.findById(questionId)
 const findQuestionsForQuiz = (quizId) => quizzesModel.findById(quizId)
     .populate('question').exec()
     .then(quiz => quiz.questions)
+    .catch(console.log)
 
 module.exports = { findAllQuestions, findQuestionById, findQuestionsForQuiz }
