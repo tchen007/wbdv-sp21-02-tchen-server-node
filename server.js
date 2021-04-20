@@ -1,10 +1,11 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const app = express()
+const bodyParser = require('body-parser')
+const MONGODB_URI = process.env.MONGODB_URI
 
 const mongoose = require('mongoose');
 mongoose.connect(
-    'mongodb://localhost:27017/whiteboard',
+    MONGODB_URI,
     {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Configure CORS to avoid issues
@@ -23,4 +24,5 @@ require('./controllers/quizzes-controller')(app)
 require('./controllers/questions-controller')(app)
 require('./controllers/quiz-attempts-controller')(app)
 
+require('dotenv').config();
 app.listen(process.env.PORT || 4000)
